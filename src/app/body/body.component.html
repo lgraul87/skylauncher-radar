@@ -10,7 +10,7 @@
                     </div>
                 </div>
             </form>
-    
+
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -21,20 +21,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let country of countries$ | async; index as i">
+                    <tr *ngFor="let country of profiles , index as i">
                         <th scope="row">{{ i + 1 }}</th>
-                        <td>
-                            <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2"
-                                style="width: 20px" />
-                            <ngb-highlight [result]="country.name" [term]="filter.value"></ngb-highlight>
-                        </td>
-                        <td><ngb-highlight [result]="country.area | number" [term]="filter.value"></ngb-highlight></td>
-                        <td><ngb-highlight [result]="country.population | number" [term]="filter.value"></ngb-highlight>
-                        </td>
+
+                        <td><ngb-highlight [result]="country.profile "></ngb-highlight></td>
+                        <td><ngb-highlight [result]="country.currentProfile "></ngb-highlight></td>
+                        <td><ngb-highlight [result]="country.description "></ngb-highlight></td>
+                        
                     </tr>
                 </tbody>
             </table>
         </div>
-        
+
     </div>
 </div>
