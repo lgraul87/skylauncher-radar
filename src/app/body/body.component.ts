@@ -1,9 +1,8 @@
-import { AsyncPipe, DecimalPipe, NgFor } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 import { Component, OnInit, PipeTransform } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
-import { collection, doc, Firestore, query, setDoc, where } from 'firebase/firestore';
-import { collectionData } from '@angular/fire/firestore';
+import {  Firestore } from '@angular/fire/firestore';
 
 
 interface Country {
@@ -75,7 +74,8 @@ export class BodyComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		const profiles = collection(this.firestore, "user");
+	
+		// const profiles = collection(this.firestore, "user");
 		// collectionData(profiles).subscribe((data: any) => {
 		// 	this.profiles = data;
 		// });
