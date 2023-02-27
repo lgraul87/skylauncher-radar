@@ -1,8 +1,10 @@
 import { AsyncPipe, DecimalPipe, NgFor } from '@angular/common';
 import { Component, OnInit, PipeTransform } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { map, Observable, startWith } from 'rxjs';
+import { collection, doc, Firestore, query, setDoc, where } from 'firebase/firestore';
+import { collectionData } from '@angular/fire/firestore';
+
 
 interface Country {
 	name: string;
@@ -51,23 +53,33 @@ function search(text: string, pipe: PipeTransform): Country[] {
 
 
 @Component({
-  selector: 'app-body',
-  templateUrl: './body.component.html',
-  styleUrls: ['./body.component.scss'],
-  providers: [DecimalPipe]
+	selector: 'app-body',
+	templateUrl: './body.component.html',
+	styleUrls: ['./body.component.scss'],
+	providers: [DecimalPipe]
 })
 export class BodyComponent implements OnInit {
-  countries$: Observable<Country[]>;
+	countries$: Observable<Country[]>;
 	filter = new FormControl('', { nonNullable: true });
 
-  constructor(pipe: DecimalPipe) {
-    this.countries$ = this.filter.valueChanges.pipe(
+	profiles: any;
+
+	constructor(
+		pipe: DecimalPipe,
+		private firestore: Firestore) {
+
+		this.countries$ = this.filter.valueChanges.pipe(
 			startWith(''),
 			map((text) => search(text, pipe)),
 		);
-   }
+	}
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {
+		const profiles = collection(this.firestore, "user");
+		// collectionData(profiles).subscribe((data: any) => {
+		// 	this.profiles = data;
+		// });
+
+	}
 
 }
