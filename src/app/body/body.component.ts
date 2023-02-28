@@ -2,7 +2,7 @@ import { DecimalPipe } from '@angular/common';
 import { Component, OnInit, PipeTransform } from '@angular/core';
 import { collectionData, Firestore } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { collection } from 'firebase/firestore';
+import { collection, doc, setDoc } from 'firebase/firestore';
 import { profileDto } from '../interfaces/profile.dto';
 
 @Component({
@@ -52,8 +52,14 @@ export class BodyComponent implements OnInit {
 		});
 	}
 
-	submitForm(form: any) {
+	submitForm(form: FormGroup) {
 		if (form.valid) {
+			const profile = {
+				currentProfile: form.value.currentProfile,
+				profile: form.value.profile,
+				description: form.value.description
+			};
+			setDoc(doc(this.firestore, "user/" + profile.profile), profile);
 
 		} else {
 			alert('Por favor, introduzca datos para todos los campos... y con un minimo de 3 caracteres y un maximo de 30. Gracias.');
