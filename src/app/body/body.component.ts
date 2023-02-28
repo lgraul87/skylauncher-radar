@@ -1,9 +1,8 @@
 import { DecimalPipe } from '@angular/common';
-import { Component, OnInit, PipeTransform } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { collectionData, Firestore } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { collection, doc, setDoc } from 'firebase/firestore';
-import { profileDto } from '../interfaces/profile.dto';
 
 @Component({
 	selector: 'app-body',
@@ -15,6 +14,7 @@ export class BodyComponent implements OnInit {
 
 	profiles!: any;
 	profileForm!: FormGroup;
+	deleteProfileForm!: FormGroup;
 
 	constructor(
 		private firestore: Firestore) {
@@ -64,6 +64,10 @@ export class BodyComponent implements OnInit {
 		} else {
 			alert('Por favor, introduzca datos para todos los campos... y con un minimo de 3 caracteres y un maximo de 30. Gracias.');
 		}
+
+	}
+
+	deleteProfile(deleteProfileForm: string) {
 
 	}
 }

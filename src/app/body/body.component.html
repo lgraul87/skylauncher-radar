@@ -45,14 +45,21 @@
                         <th scope="col">Nombre por el que se le conoce</th>
                         <th scope="col">Nombre actual</th>
                         <th scope="col">Descripcion</th>
+                        <th scope="col">Borrar perfil</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let country of profiles , index as i">
+                    <tr *ngFor="let user of profiles , index as i">
                         <th scope="row">{{ i + 1 }}</th>
-                        <td><ngb-highlight [result]="country.profile "></ngb-highlight></td>
-                        <td><ngb-highlight [result]="country.currentProfile "></ngb-highlight></td>
-                        <td><ngb-highlight [result]="country.description "></ngb-highlight></td>
+                        <td><ngb-highlight [result]="user.profile"></ngb-highlight></td>
+                        <td><ngb-highlight [result]="user.currentProfile"></ngb-highlight></td>
+                        <td><ngb-highlight [result]="user.description"></ngb-highlight></td>
+                        <td>
+                            <div class="col">
+                                <button type="button" class="btn btn-light"
+                                    (click)="deleteProfile(user.currentProfile)">Borrar</button>
+                            </div>
+                        </td>
 
                     </tr>
                 </tbody>
