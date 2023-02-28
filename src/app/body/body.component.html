@@ -3,20 +3,20 @@
         <div class="container">
 
             <div class="shadow-lg p-3 mb-5 bg-white rounded">
-                <form>
+                <form [formGroup]="profileForm" (ngSubmit)="submitForm(profileForm)">
 
                     <div class="mb-3 row d-flex justify-content-between">
 
                         <label for="table-filtering-search" class="col-2">Nombre
                             actual</label>
                         <div class="col-3">
-                            <input id="table-filtering-search" class="form-control" type="text" />
+                            <input formControlName="currentProfile" class="form-control" type="text" />
                         </div>
 
                         <label for="table-filtering-search" class="col-3">Nombre por el
                             que se le conoce</label>
                         <div class="col-3">
-                            <input id="table-filtering-search" class="form-control" type="text" />
+                            <input formControlName="profile" class="form-control" type="text" />
                         </div>
 
                     </div>
@@ -25,13 +25,13 @@
                         <label for="table-filtering-search"
                             class="col-xs-3 col-sm-auto col-form-label">Descripcion</label>
                         <div class="col-xs-3 col-sm-auto w-100">
-                            <textarea id="table-filtering-search" class="form-control"></textarea>
+                            <textarea formControlName="description" class="form-control"></textarea>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col text-end">
-                            <button type="button" class="btn btn-light">Guardar</button>
+                            <button type="submit" class="btn btn-light">Guardar</button>
                         </div>
                     </div>
 
