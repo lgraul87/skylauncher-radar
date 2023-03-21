@@ -3,12 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { collectionData, Firestore } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { collection, doc, setDoc } from 'firebase/firestore';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
 	selector: 'app-body',
 	templateUrl: './body.component.html',
 	styleUrls: ['./body.component.scss'],
-	providers: [DecimalPipe]
+	providers: [DecimalPipe,NgbModalConfig, NgbModal]
 })
 export class BodyComponent implements OnInit {
 
@@ -17,14 +18,23 @@ export class BodyComponent implements OnInit {
 	deleteProfileForm!: FormGroup;
 
 	constructor(
-		private firestore: Firestore) {
+		private firestore: Firestore,
+		config: NgbModalConfig,
+		private modalService: NgbModal) {
+			config.backdrop = 'static';
+			config.keyboard = false;
 	}
+
 
 	ngOnInit(): void {
 		this.getDataTable();
 		this.initProfileForm();
 	}
 
+
+	open(content:any) {
+		this.modalService.open(content);
+	}
 
 
 	private getDataTable() {
