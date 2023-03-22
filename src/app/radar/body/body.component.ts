@@ -9,7 +9,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 	selector: 'app-body',
 	templateUrl: './body.component.html',
 	styleUrls: ['./body.component.scss'],
-	providers: [DecimalPipe,NgbModalConfig, NgbModal]
+	providers: [DecimalPipe, NgbModalConfig, NgbModal]
 })
 export class BodyComponent implements OnInit {
 
@@ -21,8 +21,8 @@ export class BodyComponent implements OnInit {
 		private firestore: Firestore,
 		config: NgbModalConfig,
 		private modalService: NgbModal) {
-			config.backdrop = 'static';
-			config.keyboard = false;
+		config.backdrop = 'static';
+		config.keyboard = false;
 	}
 
 
@@ -32,7 +32,7 @@ export class BodyComponent implements OnInit {
 	}
 
 
-	open(content:any) {
+	open(content: any) {
 		this.modalService.open(content);
 	}
 
