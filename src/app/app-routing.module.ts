@@ -6,10 +6,10 @@ const routes: Routes = [
     path:'',
     loadChildren:()=> import ('./login/login.module').then(m => m.LoginModule)
   },
-  // {
-  //   path:'radar',
-  //   loadChildren:()=> import ('./radar/radar.module').then(m => m.RadarModule)
-  // },
+  {
+    path:'radar',
+    loadChildren:()=> import ('./radar/radar.module').then(m => m.RadarModule)
+  },
   {
     path:'**',
     redirectTo:'',
