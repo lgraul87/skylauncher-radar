@@ -1,7 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path:'',
+    loadChildren:()=> import ('./login/login.module').then(m => m.LoginModule)
+  },
+  // {
+  //   path:'radar',
+  //   loadChildren:()=> import ('./radar/radar.module').then(m => m.RadarModule)
+  // },
+  {
+    path:'**',
+    redirectTo:'',
+    pathMatch:'full',
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -12,16 +12,16 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import {Firestore} from '@angular/fire/firestore';
+import { LoginComponent } from './login/component/login.component';
 @NgModule({
   declarations: [
     AppComponent,
     BodyComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
-    
     AppRoutingModule,
     NgbModule,
     DecimalPipe,
