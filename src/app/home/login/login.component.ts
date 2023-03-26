@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatCheckboxModule } from '@angular/material';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

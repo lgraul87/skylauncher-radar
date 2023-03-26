@@ -14,7 +14,7 @@ import { getFirestore } from 'firebase/firestore';
 import { environment } from '../../environments/environment';
 
 @NgModule({
-  declarations: [HeaderComponent, BodyComponent, FooterComponent, RadarComponent],
+  declarations: [RadarComponent, HeaderComponent, BodyComponent, FooterComponent],
   imports: [
     CommonModule,
     RadarRoutingModule,
