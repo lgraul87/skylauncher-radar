@@ -1,6 +1,6 @@
 <ng-template #content let-c="close" let-d="dismiss" >
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Añadir perfil</h4>
+    <div class="modal-header mb-5">
+        <h4 class="modal-title" id="modal-basic-title">Add profile</h4>
         <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
     </div>
     <div class="modal-body">
@@ -9,23 +9,22 @@
 
             <div class="mb-3 row d-flex justify-content-between">
 
-                <label for="table-filtering-search" class="col-2">Nombre
-                    actual</label>
+                <label for="table-filtering-search" class="col-2">Current name</label>
                 <div class="col-3">
                     <input formControlName="currentProfile" class="form-control input" type="text" />
                 </div>
 
-                <label for="table-filtering-search" class="col-3">Nombre por el
-                    que se le conoce</label>
+                <label for="table-filtering-search" class="col-3">Standard name
+                    </label>
                 <div class="col-3">
                     <input formControlName="profile" class="form-control input" type="text" />
                 </div>
 
             </div>
 
-            <div class="mb-3 row">
+            <div class="mb-5 row">
                 <label for="table-filtering-search"
-                    class="col-xs-3 col-sm-auto col-form-label">Descripcion</label>
+                    class="col-xs-3 col-sm-auto col-form-label">Description</label>
                 <div class="col-xs-3 col-sm-auto w-100">
                     <textarea formControlName="description" class="form-control"></textarea>
                 </div>
@@ -33,7 +32,7 @@
 
             <div class="row">
                 <div class="col text-end">
-                    <button type="submit" class="btn btn-light">Guardar</button>
+                    <button type="submit" class="btn btn-light">Save</button>
                 </div>
             </div>
 
