@@ -5,42 +5,47 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { collection, doc, setDoc } from 'firebase/firestore';
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss'],
-  providers:[NgbModalConfig,NgbModal]
+	selector: 'app-modal',
+	templateUrl: './modal.component.html',
+	styleUrls: ['./modal.component.scss'],
+	providers: [NgbModalConfig, NgbModal]
 })
+
 export class ModalComponent implements OnInit {
 
-  profiles!: any;
+	profiles!: any;
 	profileForm!: FormGroup;
 	deleteProfileForm!: FormGroup;
 
-  constructor(
-    private firestore: Firestore,
+	get description() {
+		return this.profileForm.get('description');
+	}
+
+	constructor(
+		private firestore: Firestore,
 		config: NgbModalConfig,
 		private modalService: NgbModal) {
 		config.backdrop = 'static';
 		config.keyboard = false;
 	}
 
-  open(content: any) {
+	open(content: any) {
 		this.modalService.open(content);
 	}
 
-  ngOnInit(): void {
-    this.getDataTable();
+	ngOnInit(): void {
+		this.getDataTable();
 		this.initProfileForm();
-  }
+	}
 
-  private getDataTable() {
+	private getDataTable() {
 		const profiles = collection(this.firestore, "user");
 		collectionData(profiles).subscribe(data => {
 			this.profiles = data;
 		});
 	}
 
-  private initProfileForm() {
+	private initProfileForm() {
 		this.profileForm = new FormGroup({
 			currentProfile: new FormControl('', [
 				Validators.required,
@@ -57,7 +62,7 @@ export class ModalComponent implements OnInit {
 			]),
 		});
 	}
-  submitForm(form: FormGroup) {
+	submitForm(form: FormGroup) {
 		if (form.valid) {
 			const profile = {
 				currentProfile: form.value.currentProfile,
