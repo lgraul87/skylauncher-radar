@@ -1,4 +1,4 @@
-<ng-template #content let-c="close" let-d="dismiss" >
+<ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header mb-5">
         <h4 class="modal-title" id="modal-basic-title">Add profile</h4>
         <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
@@ -11,26 +11,25 @@
 
                 <label for="table-filtering-search" class="col-2">Current name</label>
                 <div class="col-3">
-                    <input formControlName="currentProfile" class="form-control input" type="text" />
+                    <input formControlName="currentProfile"  class="form-control input" type="text"/>
                 </div>
 
                 <label for="table-filtering-search" class="col-3">Standard name
-                    </label>
+                </label>
                 <div class="col-3">
-                    <input formControlName="profile" class="form-control input" type="text" />
+                    <input formControlName="profile"  class="form-control input" type="text"/>
                 </div>
 
             </div>
 
             <div class="mb-5 row">
-                <label for="table-filtering-search"
-                    class="col-xs-3 col-sm-auto col-form-label">Description</label>
+                <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Description</label>
                 <div class="col-xs-3 col-sm-auto w-100">
                     <textarea formControlName="description" class="form-control"></textarea>
                 </div>
-                <!-- <div *ngIf="description.errors?.['required']">
+                <div *ngIf="description?.errors?.['required'] && isSubmited">
                     <p>Error en textarea</p>
-                </div> -->
+                </div>
             </div>
 
             <div class="row">

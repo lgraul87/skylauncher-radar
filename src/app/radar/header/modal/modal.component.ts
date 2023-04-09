@@ -12,6 +12,10 @@ import { collection, doc, setDoc } from 'firebase/firestore';
 })
 
 export class ModalComponent implements OnInit {
+	profile = {};
+
+	isSubmited=false;
+
 
 	profiles!: any;
 	profileForm!: FormGroup;
@@ -29,15 +33,18 @@ export class ModalComponent implements OnInit {
 		config.keyboard = false;
 	}
 
-	open(content: any) {
-		this.modalService.open(content);
-	}
-
 	ngOnInit(): void {
 		this.getDataTable();
 		this.initProfileForm();
 	}
 
+	fun(){
+		this.isSubmited = true;
+	}
+
+	open(content: any) {
+		this.modalService.open(content);
+	}
 	private getDataTable() {
 		const profiles = collection(this.firestore, "user");
 		collectionData(profiles).subscribe(data => {
@@ -69,6 +76,8 @@ export class ModalComponent implements OnInit {
 				profile: form.value.profile,
 				description: form.value.description
 			};
+			this.profile =profile;
+			console.log(form.value);
 			setDoc(doc(this.firestore, "user/" + profile.profile), profile);
 
 		} else {
