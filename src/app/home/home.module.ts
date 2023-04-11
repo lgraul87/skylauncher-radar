@@ -7,7 +7,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [HomeComponent,LoginComponent,CreateAccountComponent],
+  declarations: [HomeComponent, LoginComponent, CreateAccountComponent],
   imports: [CommonModule, HomeRoutingModule, ReactiveFormsModule]
 })
 export class HomeModule { }

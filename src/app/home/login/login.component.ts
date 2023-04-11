@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Firestore, collection, collectionData, doc, setDoc } from '@angular/fire/firestore/public_api';
-import {  FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
+import {  FormGroup, Validators, FormControl } from '@angular/forms';
+import { collectionData, Firestore } from '@angular/fire/firestore';
+import { collection, doc, setDoc } from 'firebase/firestore';
+
 
 @Component({
   selector: 'app-login',
