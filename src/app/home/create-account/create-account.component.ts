@@ -45,12 +45,11 @@ export class CreateAccountComponent implements OnInit {
   submitForm(form: FormGroup) {
     if (form.valid) {
       const register = {
-        currentProfile: form.value.currentProfile,
-        profile: form.value.profile,
-        description: form.value.description
+        email: form.value.email,
+        password: form.value.password,
       };
       console.log(form.value);
-      setDoc(doc(this.firestore, "user/" + register.profile), register);
+      setDoc(doc(this.firestore, "user/" + register.email), register);
       // Esto ta mal arreglar 
 
     } else {
