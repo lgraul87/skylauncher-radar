@@ -6,7 +6,7 @@ import { CreateAccountComponent } from './create-account.component';
 
 
 @NgModule({
-  declarations: [CreateAccountComponent],
+  declarations: [],
   imports: [
     CommonModule,
     CreateAccountRoutingModule

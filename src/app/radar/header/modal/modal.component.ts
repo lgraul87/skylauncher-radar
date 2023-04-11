@@ -13,10 +13,7 @@ import { collection, doc, setDoc } from 'firebase/firestore';
 
 export class ModalComponent implements OnInit {
 	profile = {};
-
-	isSubmited=false;
-
-
+	isSubmited = false;
 	profiles!: any;
 	profileForm!: FormGroup;
 	deleteProfileForm!: FormGroup;
@@ -38,7 +35,7 @@ export class ModalComponent implements OnInit {
 		this.initProfileForm();
 	}
 
-	fun(){
+	fun() {
 		this.isSubmited = true;
 	}
 
@@ -76,7 +73,7 @@ export class ModalComponent implements OnInit {
 				profile: form.value.profile,
 				description: form.value.description
 			};
-			this.profile =profile;
+			this.profile = profile;
 			console.log(form.value);
 			setDoc(doc(this.firestore, "user/" + profile.profile), profile);
 
