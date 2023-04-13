@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { collectionData, Firestore } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,7 +16,6 @@ export class ModalComponent implements OnInit {
 	isSubmited = false;
 	profiles!: any;
 	profileForm!: FormGroup;
-	deleteProfileForm!: FormGroup;
 
 	get description() {
 		return this.profileForm.get('description');
@@ -34,7 +33,13 @@ export class ModalComponent implements OnInit {
 		this.getDataTable();
 		this.initProfileForm();
 	}
-
+	clean(){
+		this.profileForm = new FormGroup({
+			currentProfile: new FormControl(''),
+			profile: new FormControl(''),
+			description: new FormControl('')
+		})
+	}
 	fun() {
 		this.isSubmited = true;
 	}
@@ -76,6 +81,12 @@ export class ModalComponent implements OnInit {
 			this.profile = profile;
 			console.log(form.value);
 			setDoc(doc(this.firestore, "user/" + profile.profile), profile);
+
+			this.profileForm = new FormGroup({
+				currentProfile: new FormControl(''),
+				profile: new FormControl(''),
+				description: new FormControl('')
+			})
 
 		} else {
 			alert('Por favor, introduzca datos para todos los campos... y con un minimo de 3 caracteres y un maximo de 30. Gracias.');
