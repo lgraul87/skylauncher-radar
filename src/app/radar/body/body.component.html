@@ -18,9 +18,12 @@
                         <td><ngb-highlight [result]="user.currentProfile"></ngb-highlight></td>
                         <td><ngb-highlight [result]="user.description"></ngb-highlight></td>
                         <td>
-                            <div class="col">
-                                <button type="button" class="btn btn-light" (click)="deleteProfile(user.currentProfile)">
+                            <div class="d-flex space-between">
+                                <button type="button" class="btn btn-light" (click)="deleteProfile(user.profile)">
                                     Borrar
+                                </button>
+                                <button type="button" class="btn btn-light">
+                                    Modificar
                                 </button>
                             </div>
                         </td>

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { collectionData, Firestore } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { collection, doc, setDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
 
 @Component({
 	selector: 'app-modal',
@@ -71,7 +71,7 @@ export class ModalComponent implements OnInit {
 			]),
 		});
 	}
-	submitForm(form: FormGroup) {
+	async submitForm(form: FormGroup) {
 		if (form.valid) {
 			const profile = {
 				currentProfile: form.value.currentProfile,
@@ -79,10 +79,27 @@ export class ModalComponent implements OnInit {
 				description: form.value.description
 			};
 			this.profile = profile;
-			console.log(form.value);
-			setDoc(doc(this.firestore, "user/" + profile.profile), profile);
+			const di = collection(this.firestore, "user");
+			
+			const q = query(di, where(profile.profile, "==", profile.profile));
 
-			this.initProfileForm();
+			const querySnapshot = await getDocs(q);
+
+			querySnapshot.forEach((doc) => {
+				console.log('El id es : '+ doc.id);
+				console.log('El data es : '+doc.data());
+				console.log('fin');
+				
+			  });
+
+			if(q){
+				setDoc(doc(this.firestore, "user/" + profile.profile), profile);
+				alert('existe');
+				this.initProfileForm();
+			}else{
+				setDoc(doc(this.firestore, "user/" + profile.profile), profile);
+				this.initProfileForm();			
+			}
 
 		} else {
 			alert('Por favor, introduzca datos para todos los campos... y con un minimo de 3 caracteres y un maximo de 30. Gracias.');

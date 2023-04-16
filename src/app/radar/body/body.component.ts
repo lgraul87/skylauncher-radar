@@ -77,6 +77,7 @@ export class BodyComponent implements OnInit {
 	}
 
 	async deleteProfile(deleteProfileForm: string) {
-		await deleteDoc(doc(this.firestore, "user", deleteProfileForm));
+		await deleteDoc(doc(this.firestore, "user/", deleteProfileForm));
+		console.log('1')
 	}
 }
