@@ -82,15 +82,10 @@ export class ModalComponent implements OnInit {
 			console.log(form.value);
 			setDoc(doc(this.firestore, "user/" + profile.profile), profile);
 
-			this.profileForm = new FormGroup({
-				currentProfile: new FormControl(''),
-				profile: new FormControl(''),
-				description: new FormControl('')
-			})
+			this.initProfileForm();
 
 		} else {
 			alert('Por favor, introduzca datos para todos los campos... y con un minimo de 3 caracteres y un maximo de 30. Gracias.');
 		}
-
 	}
 }

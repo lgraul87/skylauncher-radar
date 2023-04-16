@@ -79,5 +79,7 @@ export class BodyComponent implements OnInit {
 
 	deleteProfile(deleteProfileForm: string) {
 
+		
+
 	}
 }
