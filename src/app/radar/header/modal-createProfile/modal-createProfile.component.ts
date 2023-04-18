@@ -5,13 +5,13 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
 
 @Component({
-	selector: 'app-modal',
-	templateUrl: './modal.component.html',
-	styleUrls: ['./modal.component.scss'],
+	selector: 'app-createProfile',
+	templateUrl: './modal-createProfile.component.html',
+	styleUrls: ['./modal-createProfile.component.scss'],
 	providers: [NgbModalConfig, NgbModal]
 })
 
-export class ModalComponent implements OnInit {
+export class CreateProfileComponent implements OnInit {
 	profile = {};
 	isSubmited = false;
 	profiles!: any;
@@ -20,7 +20,6 @@ export class ModalComponent implements OnInit {
 	get description() {
 		return this.profileForm.get('description');
 	}
-
 	constructor(
 		private firestore: Firestore,
 		config: NgbModalConfig,
@@ -33,17 +32,6 @@ export class ModalComponent implements OnInit {
 		this.getDataTable();
 		this.initProfileForm();
 	}
-	clean(){
-		this.profileForm = new FormGroup({
-			currentProfile: new FormControl(''),
-			profile: new FormControl(''),
-			description: new FormControl('')
-		})
-	}
-	fun() {
-		this.isSubmited = true;
-	}
-
 	open(content: any) {
 		this.modalService.open(content);
 	}
@@ -79,27 +67,30 @@ export class ModalComponent implements OnInit {
 				description: form.value.description
 			};
 			this.profile = profile;
-			const di = collection(this.firestore, "user");
+			// const di = collection(this.firestore, "user");
 			
-			const q = query(di, where(profile.profile, "==", profile.profile));
+			// const q = query(di, where(profile.profile, "==", profile.profile));
 
-			const querySnapshot = await getDocs(q);
+			// console.log(q);
+			
 
-			querySnapshot.forEach((doc) => {
-				console.log('El id es : '+ doc.id);
-				console.log('El data es : '+doc.data());
-				console.log('fin');
+			// const querySnapshot = await getDocs(q);
+
+			// querySnapshot.forEach((doc) => {
+			// 	console.log('El id es : '+ doc.id);
+			// 	console.log('El data es : '+doc.data());
+			// 	console.log('fin');
 				
-			  });
+			//   });
 
-			if(q){
-				setDoc(doc(this.firestore, "user/" + profile.profile), profile);
-				alert('existe');
-				this.initProfileForm();
-			}else{
-				setDoc(doc(this.firestore, "user/" + profile.profile), profile);
-				this.initProfileForm();			
-			}
+			// if(q){
+			// 	setDoc(doc(this.firestore, "user/" + profile.profile), profile);
+			// 	alert('existe');
+			// 	this.initProfileForm();
+			// }else{
+			// 	setDoc(doc(this.firestore, "user/" + profile.profile), profile);
+			// 	this.initProfileForm();			
+			// }
 
 		} else {
 			alert('Por favor, introduzca datos para todos los campos... y con un minimo de 3 caracteres y un maximo de 30. Gracias.');
