@@ -2,12 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { collectionData, Firestore } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
+import { collection, doc, getDocs, query, setDoc, updateDoc, where } from 'firebase/firestore';
 
 @Component({
-	selector: 'app-createProfile',
-	templateUrl: './modal-createProfile.component.html',
-	styleUrls: ['./modal-createProfile.component.scss'],
+	selector: 'app-create-profile',
+	templateUrl: './create-profile-modal.component.html',
+	styleUrls: ['./create-profile-modal.component.scss'],
 	providers: [NgbModalConfig, NgbModal]
 })
 
@@ -84,9 +84,9 @@ export class CreateProfileComponent implements OnInit {
 			//   });
 
 			// if(q){
-			// 	setDoc(doc(this.firestore, "user/" + profile.profile), profile);
+				setDoc(doc(this.firestore, "user/" + profile.profile), profile);
 			// 	alert('existe');
-			// 	this.initProfileForm();
+			this.initProfileForm();
 			// }else{
 			// 	setDoc(doc(this.firestore, "user/" + profile.profile), profile);
 			// 	this.initProfileForm();			

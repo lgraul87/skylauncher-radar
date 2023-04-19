@@ -9,15 +9,15 @@
 
             <div class="mb-3 row d-flex justify-content-between">
 
-                <label for="table-filtering-search" class="col-2">Current name</label>
-                <div class="col-3">
-                    <input formControlName="currentProfile" class="form-control input" type="text"/>
-                </div>
-
-                <label for="table-filtering-search" class="col-3">Standard name
+                <label for="table-filtering-search" class="col-3">Profile
                 </label>
                 <div class="col-3">
-                    <input formControlName="profile" class="form-control input" type="text"/>
+                    <input formControlName="profile" class="form-control input" type="text" />
+                </div>
+
+                <label for="table-filtering-search" class="col-2">Current profile</label>
+                <div class="col-3">
+                    <input formControlName="currentProfile" class="form-control input" type="text" />
                 </div>
 
             </div>
@@ -30,7 +30,7 @@
             </div>
             <div class="row">
                 <div class="col text-end">
-                    <button type="submit"(click)="d('Cross click')" class="btn btn-light">Save</button>
+                    <button type="submit" (click)="d('Cross click')" class="btn btn-light">Save</button>
                 </div>
             </div>
 

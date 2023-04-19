@@ -1,1 +1,37 @@
-<p>modify-profile works!</p>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header mb-5">
+        <h4 class="modal-title" id="modal-basic-title">Modify profile</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="updateProfileForm" (ngSubmit)="updateForm(updateProfileForm) ">
+
+            <div class="mb-3 row d-flex justify-content-between">
+
+                <label for="table-filtering-search" class="col-3">profile
+                </label>
+                <div class="col-3">
+                    <p class="form-control input bg-light">{{profile}}</p>
+                </div>
+
+                <label for="table-filtering-search" class="col-2">Current profile</label>
+                <div class="col-3">
+                    <input formControlName="currentProfile" class="form-control input" type="text"/>
+                </div>
+            </div>
+            <div class="mb-5 row">
+                <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Description</label>
+                <div class="col-xs-3 col-sm-auto w-100">
+                    <textarea formControlName="description" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-end">
+                    <button type="submit"(click)="d('Cross click')" class="btn btn-light">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<button type="button"class="btn btn-light" (click)="open(content)">Modificar</button>

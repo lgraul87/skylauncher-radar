@@ -12,8 +12,8 @@ import { initializeApp } from 'firebase/app';
 import { provideFirestore } from '@angular/fire/firestore';
 import { getFirestore } from 'firebase/firestore';
 import { environment } from '../../environments/environment';
-import { CreateProfileComponent } from './header/modal-createProfile/modal-createProfile.component';
 import { ModifyProfileComponent } from './body/modify-profile/modify-profile.component';
+import { CreateProfileComponent } from './header/create-profile-modal/create-profile-modal.component';
 
 @NgModule({
   declarations: [RadarComponent, HeaderComponent, BodyComponent, FooterComponent,CreateProfileComponent,  ModifyProfileComponent],

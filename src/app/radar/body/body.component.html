@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col mt-5 tabla">
-        <div class="container">
-            <table class="table table-striped">
+        <div class="container text-center ">
+            <table class="w-100 table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -18,14 +18,11 @@
                         <td><ngb-highlight [result]="user.currentProfile"></ngb-highlight></td>
                         <td><ngb-highlight [result]="user.description"></ngb-highlight></td>
                         <td>
-                            <div class="d-flex space-between">
-                                <button type="button" class="btn btn-light" (click)="deleteProfile(user.profile)">
+                            <div>
+                                <button type="button" class="btn btn-light m-3 " (click)="deleteProfile(user.profile)">
                                     Borrar
                                 </button>
-                                <button type="button" class="btn btn-light" >
-                                    Modificar
-                                </button>
-                                
+                                <app-modify-profile [profileToEdit]="user"></app-modify-profile>
                             </div>
                         </td>
                     </tr>

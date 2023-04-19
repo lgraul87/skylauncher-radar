@@ -13,6 +13,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class BodyComponent implements OnInit {
 
+	
 	profiles!: any;
 	profileForm!: FormGroup;
 	deleteProfileForm!: FormGroup;
@@ -25,12 +26,12 @@ export class BodyComponent implements OnInit {
 		config.keyboard = false;
 	}
 
-
 	ngOnInit(): void {
+		
 		this.getDataTable();
 		this.initProfileForm();
 	}
-
+	modify = false;
 
 	open(content: any) {
 		this.modalService.open(content);
@@ -75,9 +76,9 @@ export class BodyComponent implements OnInit {
 			alert('Por favor, introduzca datos para todos los campos... y con un minimo de 3 caracteres y un maximo de 30. Gracias.');
 		}
 	}
-
+	
 	async deleteProfile(deleteProfileForm: string) {
-		await deleteDoc(doc(this.firestore, "user/", deleteProfileForm));
+		await deleteDoc(doc(this.firestore, "user", deleteProfileForm));
 		console.log('1')
 	}
 }
