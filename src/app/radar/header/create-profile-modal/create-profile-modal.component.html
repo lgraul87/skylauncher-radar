@@ -9,23 +9,41 @@
 
             <div class="mb-3 row d-flex justify-content-between">
 
-                <label for="table-filtering-search" class="col-3">Profile
+                <label for="table-filtering-search" class="col-2">Profile
                 </label>
                 <div class="col-3">
                     <input formControlName="profile" class="form-control input" type="text" />
+                        <span *ngIf="profileForm.get('profile')?.errors?.['required']" class="text-danger">
+                            * Campo obligatorio.
+                        </span>
+                        <span *ngIf="this.profileForm.get('profile')?.errors?.['minlength']" class="text-danger">
+                            (Debe tener como mínimo 3 caracteres)
+                        </span>
                 </div>
+
 
                 <label for="table-filtering-search" class="col-2">Current profile</label>
                 <div class="col-3">
                     <input formControlName="currentProfile" class="form-control input" type="text" />
+                    <span *ngIf="profileForm.get('currentProfile')?.errors?.['required']" class="text-danger">
+                        * Campo obligatorio.
+                    </span>
+                    <span *ngIf="this.profileForm.get('currentProfile')?.errors?.['minlength']" class="text-danger">
+                        (Debe tener como mínimo 3 caracteres)
+                    </span>
                 </div>
-
             </div>
 
             <div class="mb-5 row">
                 <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Description</label>
                 <div class="col-xs-3 col-sm-auto w-100">
                     <textarea formControlName="description" class="form-control"></textarea>
+                    <span *ngIf="profileForm.get('description')?.errors?.['required']" class="text-danger">
+                        * Campo obligatorio.
+                    </span>
+                    <span *ngIf="this.profileForm.get('description')?.errors?.['minlength']" class="text-danger">
+                        (Debe tener como mínimo 3 caracteres)
+                    </span>
                 </div>
             </div>
             <div class="row">

@@ -48,8 +48,9 @@ export class CreateAccountComponent implements OnInit {
         email: form.value.email,
         password: form.value.password,
       };
-      console.log(form.value);
       setDoc(doc(this.firestore, "user/" + register.email), register);
+
+      this.initRegisterForm();
       // Esto ta mal arreglar 
 
     } else {

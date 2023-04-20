@@ -8,21 +8,32 @@
 
             <div class="mb-3 row d-flex justify-content-between">
 
-                <label for="table-filtering-search" class="col-3">profile
+                <label for="table-filtering-search" class="col-1">profile
                 </label>
                 <div class="col-3">
                     <p class="form-control input bg-light">{{profile}}</p>
                 </div>
-
-                <label for="table-filtering-search" class="col-2">Current profile</label>
-                <div class="col-3">
+                <label for="table-filtering-search" class="col-1">Current profile</label>
+                <div class="col-4">
                     <input formControlName="currentProfile" class="form-control input" type="text"/>
+                    <span *ngIf="updateProfileForm.get('currentProfile')?.errors?.['required']" class="text-danger">
+                        * Campo obligatorio.
+                    </span>
+                    <span *ngIf="this.updateProfileForm.get('currentProfile')?.errors?.['minlength']" class="text-danger">
+                        (Debe tener como mínimo 3 caracteres)
+                    </span>
                 </div>
             </div>
             <div class="mb-5 row">
                 <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Description</label>
-                <div class="col-xs-3 col-sm-auto w-100">
+                <div class="col-xs-4 col-sm-auto w-100">
                     <textarea formControlName="description" class="form-control"></textarea>
+                    <span *ngIf="updateProfileForm.get('description')?.errors?.['required']" class="text-danger">
+                        * Campo obligatorio.
+                    </span>
+                    <span *ngIf="this.updateProfileForm.get('description')?.errors?.['minlength']" class="text-danger">
+                        (Debe tener como mínimo 3 caracteres)
+                    </span>
                 </div>
             </div>
             <div class="row">
@@ -33,5 +44,4 @@
         </form>
     </div>
 </ng-template>
-
 <button type="button"class="btn btn-light" (click)="open(content)">Modificar</button>

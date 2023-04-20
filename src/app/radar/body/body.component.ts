@@ -12,7 +12,6 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 	providers: [DecimalPipe, NgbModalConfig, NgbModal]
 })
 export class BodyComponent implements OnInit {
-
 	
 	profiles!: any;
 	profileForm!: FormGroup;
@@ -27,7 +26,6 @@ export class BodyComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		
 		this.getDataTable();
 		this.initProfileForm();
 	}
@@ -76,7 +74,7 @@ export class BodyComponent implements OnInit {
 			alert('Por favor, introduzca datos para todos los campos... y con un minimo de 3 caracteres y un maximo de 30. Gracias.');
 		}
 	}
-	
+
 	async deleteProfile(deleteProfileForm: string) {
 		await deleteDoc(doc(this.firestore, "user", deleteProfileForm));
 		console.log('1')
