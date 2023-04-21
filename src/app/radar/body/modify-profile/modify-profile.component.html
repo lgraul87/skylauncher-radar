@@ -15,11 +15,16 @@
                 </div>
                 <label for="table-filtering-search" class="col-1">Current profile</label>
                 <div class="col-4">
-                    <input formControlName="currentProfile" class="form-control input" type="text"/>
+
+                    <input formControlName="currentProfile" name="currentProfile" id="currentProfile" class="form-control input" required type="text"
+                        [class.border-danger]="updateProfileForm.get('currentProfile')?.errors?.['required']" />
+
+
                     <span *ngIf="updateProfileForm.get('currentProfile')?.errors?.['required']" class="text-danger">
                         * Campo obligatorio.
                     </span>
-                    <span *ngIf="this.updateProfileForm.get('currentProfile')?.errors?.['minlength']" class="text-danger">
+                    <span *ngIf="this.updateProfileForm.get('currentProfile')?.errors?.['minlength']"
+                        class="text-danger">
                         (Debe tener como mínimo 3 caracteres)
                     </span>
                 </div>
@@ -27,7 +32,8 @@
             <div class="mb-5 row">
                 <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Description</label>
                 <div class="col-xs-4 col-sm-auto w-100">
-                    <textarea formControlName="description" class="form-control"></textarea>
+                    <textarea formControlName="description" class="form-control"
+                        [class.border-danger]="updateProfileForm.get('description')?.errors?.['required']"></textarea>
                     <span *ngIf="updateProfileForm.get('description')?.errors?.['required']" class="text-danger">
                         * Campo obligatorio.
                     </span>
@@ -38,10 +44,10 @@
             </div>
             <div class="row">
                 <div class="col text-end">
-                    <button type="submit"(click)="d('Cross click')" class="btn btn-light">Save</button>
+                    <button type="submit" (click)="d('Cross click')" class="btn btn-light">Save</button>
                 </div>
             </div>
         </form>
     </div>
 </ng-template>
-<button type="button"class="btn btn-light" (click)="open(content)">Modificar</button>
+<button type="button" class="btn btn-light" (click)="open(content)">Modificar</button>

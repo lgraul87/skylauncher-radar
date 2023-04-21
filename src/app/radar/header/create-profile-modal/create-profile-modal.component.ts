@@ -29,17 +29,10 @@ export class CreateProfileComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.getDataTable();
 		this.initProfileForm();
 	}
 	open(content: any) {
 		this.modalService.open(content);
-	}
-	private getDataTable() {
-		const profiles = collection(this.firestore, "user");
-		collectionData(profiles).subscribe(data => {
-			this.profiles = data;
-		});
 	}
 
 	private initProfileForm() {
@@ -67,9 +60,10 @@ export class CreateProfileComponent implements OnInit {
 				description: form.value.description
 			};
 			this.profile = profile;
-			// const di = collection(this.firestore, "user");
+
+			const di = collection(this.firestore, "user");
 			
-			// const q = query(di, where(profile.profile, "==", profile.profile));
+			const q = query(di, where(profile.profile, "==", profile.profile));
 
 			// console.log(q);
 			
@@ -83,14 +77,15 @@ export class CreateProfileComponent implements OnInit {
 				
 			//   });
 
-			// if(q){
+			 if(q){
 				setDoc(doc(this.firestore, "user/" + profile.profile), profile);
-			// 	alert('existe');
-			this.initProfileForm();
-			// }else{
-			// 	setDoc(doc(this.firestore, "user/" + profile.profile), profile);
-			// 	this.initProfileForm();			
-			// }
+				alert('existe');
+
+				this.initProfileForm();
+			 }else{
+			 	setDoc(doc(this.firestore, "user/" + profile.profile), profile);
+				this.initProfileForm();			
+			 }
 
 		} else {
 			alert('Por favor, introduzca datos para todos los campos... y con un minimo de 3 caracteres y un maximo de 30. Gracias.');
