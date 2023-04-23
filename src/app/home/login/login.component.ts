@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Firestore } from '@angular/fire/firestore';
-import { doc, setDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, query, setDoc } from 'firebase/firestore';
 
 
 @Component({
@@ -36,17 +36,30 @@ export class LoginComponent implements OnInit {
       ])
     });
   }
-  submitForm(form: FormGroup) {
+  async submitForm(form: FormGroup) {
     if (form.valid) {
       const login = {
         email: form.value.email,
         password: form.value.password,
       };
-      setDoc(doc(this.firestore, "user/" + login.email), login);
+
+      const di = doc(this.firestore, "account/");
+
+      console.log(di);
+      
+
+
+      // setDoc(doc(this.firestore, "user/" + login.email), login);
       // Esto ta mal arreglar 
 
     } else {
-      alert('Por favor, introduzca datos para todos los campos... y con un minimo de 3 caracteres y un maximo de 30. Gracias.');
+      const q = query(collection(this.firestore,"account"))      
+
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        console.log(doc.id, " => ", doc.data());
+      });
+      // alert('Por favor, introduzca datos para todos los campos... y con un minimo de 3 caracteres y un maximo de 30. Gracias.');
     }
   }
 

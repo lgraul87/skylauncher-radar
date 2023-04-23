@@ -13,30 +13,39 @@
                 </label>
                 <div class="col-3">
                     <input formControlName="profile" class="form-control input" type="text"
+                        [ngClass]="{'border-danger' :profileForm.get('profile')?.errors?.['required']&&profileForm.get('profile')?.dirty
+                            || profileForm.get('profile')?.errors?.['maxlength'] || profileForm.get('profile')?.errors?.['minlength']}"/>
 
-                    [ngClass]="{'border-danger' :profileForm.get('profile')?.errors?.['required']&&profileForm.get('profile')?.dirty}" />
-
-
-                    <span *ngIf="profileForm.get('profile')?.errors?.['required']&&profileForm.get('profile')?.dirty" class="text-danger">
-                        * Campo obligatorio.
+                    <span *ngIf="profileForm.get('profile')?.errors?.['required']&&profileForm.get('profile')?.dirty"
+                        class="text-danger">
+                        * Obligatory field.
                     </span>
-                    <span *ngIf="this.profileForm.get('profile')?.errors?.['minlength']&&profileForm.get('profile')?.dirty" class="text-danger">
-                        (Debe tener como mínimo 3 caracteres)
+                    <span
+                        *ngIf="this.profileForm.get('profile')?.errors?.['minlength']&&profileForm.get('profile')?.dirty"
+                        class="text-danger">
+                        * Profile must be more than 3 characters
+                    </span>
+                    <span
+                        *ngIf="this.profileForm.get('profile')?.errors?.['maxlength']&&profileForm.get('profile')?.dirty"
+                        class="text-danger">
+                        * Profile must be less than 15 characters
                     </span>
                 </div>
-
-
                 <label for="table-filtering-search" class="col-2">Current profile</label>
                 <div class="col-3">
                     <input formControlName="currentProfile" class="form-control input" type="text"
-                        [ngClass]="{'border-danger' :profileForm.get('currentProfile')?.errors?.['required']&&profileForm.get('currentProfile')?.dirty}" />
+                        [ngClass]="{'border-danger' :profileForm.get('currentProfile')?.errors?.['required']&&profileForm.get('currentProfile')?.dirty 
+                        || profileForm.get('currentProfile')?.errors?.['minlength']}" />
 
-
-                    <span *ngIf="profileForm.get('currentProfile')?.errors?.['required']&&profileForm.get('currentProfile')?.dirty" class="text-danger">
-                        * Campo obligatorio.
+                    <span
+                        *ngIf="profileForm.get('currentProfile')?.errors?.['required']&&profileForm.get('currentProfile')?.dirty"
+                        class="text-danger">
+                        * Obligatory field.
                     </span>
-                    <span *ngIf="this.profileForm.get('currentProfile')?.errors?.['minlength']&&profileForm.get('currentProfile')?.dirty" class="text-danger">
-                        (Debe tener como mínimo 3 caracteres)
+                    <span
+                        *ngIf="this.profileForm.get('currentProfile')?.errors?.['minlength']&&profileForm.get('currentProfile')?.dirty"
+                        class="text-danger">
+                        * The current Profile must be more than 3 characters
                     </span>
                 </div>
             </div>
@@ -45,14 +54,18 @@
                 <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Description</label>
                 <div class="col-xs-3 col-sm-auto w-100">
                     <textarea formControlName="description" class="form-control"
+                        [ngClass]="{'border-danger' :profileForm.get('description')?.errors?.['required']&&profileForm.get('description')?.dirty || profileForm.get('description')?.errors?.['minlength']}">
+                    </textarea>
 
-                    [ngClass]="{'border-danger' :profileForm.get('description')?.errors?.['required']&&profileForm.get('description')?.dirty}"></textarea>
-
-                    <span *ngIf="profileForm.get('description')?.errors?.['required']&&profileForm.get('description')?.dirty" class="text-danger">
-                        * Campo obligatorio.
+                    <span
+                        *ngIf="profileForm.get('description')?.errors?.['required']&&profileForm.get('description')?.dirty"
+                        class="text-danger">
+                        * Obligatory field.
                     </span>
-                    <span *ngIf="this.profileForm.get('description')?.errors?.['minlength']&&profileForm.get('description')?.dirty" class="text-danger">
-                        (Debe tener como mínimo 3 caracteres)
+                    <span
+                        *ngIf="profileForm.get('description')?.errors?.['minlength']&&profileForm.get('description')?.dirty"
+                        class="text-danger">
+                        * The description must be more than 3 characters
                     </span>
                 </div>
             </div>
@@ -61,9 +74,7 @@
                     <button type="submit" (click)="d('Cross click')" class="btn btn-light">Save</button>
                 </div>
             </div>
-
         </form>
-
     </div>
 </ng-template>
 

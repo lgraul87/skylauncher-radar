@@ -40,7 +40,7 @@ export class CreateProfileComponent implements OnInit {
 			currentProfile: new FormControl('', [
 				Validators.required,
 				Validators.minLength(3),
-				Validators.maxLength(30),
+				Validators.maxLength(15),
 			]),
 			profile: new FormControl('', [
 				Validators.required,
@@ -61,9 +61,12 @@ export class CreateProfileComponent implements OnInit {
 			};
 			this.profile = profile;
 
-			const di = collection(this.firestore, "user");
+			const di = doc(this.firestore, "user/");
 			
-			const q = query(di, where(profile.profile, "==", profile.profile));
+			console.log(di);
+			
+
+			// const q = query(di, where(profile.profile, "==", profile.profile));
 
 			// console.log(q);
 			
@@ -77,15 +80,15 @@ export class CreateProfileComponent implements OnInit {
 				
 			//   });
 
-			 if(q){
-				setDoc(doc(this.firestore, "user/" + profile.profile), profile);
-				alert('existe');
+			//  if(q){
+			// 	setDoc(doc(this.firestore, "user/" + profile.profile), profile);
+			// 	alert('existe');
 
-				this.initProfileForm();
-			 }else{
-			 	setDoc(doc(this.firestore, "user/" + profile.profile), profile);
-				this.initProfileForm();			
-			 }
+			// 	this.initProfileForm();
+			//  }else{
+			//  	setDoc(doc(this.firestore, "user/" + profile.profile), profile);
+			// 	this.initProfileForm();			
+			//  }
 
 		} else {
 			alert('Por favor, introduzca datos para todos los campos... y con un minimo de 3 caracteres y un maximo de 30. Gracias.');

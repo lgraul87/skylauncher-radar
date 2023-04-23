@@ -5,9 +5,10 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './component/home.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ErrorRegisterComponent } from './create-account/error-register/error-register.component';
 
 @NgModule({
-  declarations: [HomeComponent, LoginComponent, CreateAccountComponent],
+  declarations: [HomeComponent, LoginComponent, CreateAccountComponent, ErrorRegisterComponent],
   imports: [CommonModule, HomeRoutingModule, ReactiveFormsModule]
 })
 export class HomeModule { }
