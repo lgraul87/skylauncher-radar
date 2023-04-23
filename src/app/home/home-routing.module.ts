@@ -4,6 +4,7 @@ import { HomeComponent } from './component/home.component';
 import { LoginComponent } from './login/login.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { ErrorRegisterComponent } from './create-account/error-register/error-register.component';
+import { ErrorLoginComponent } from './login/error-login/error-login.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,9 @@ const routes: Routes = [
   {
     path:'error-register',
     component: ErrorRegisterComponent
+  },
+  {path:'error-login',
+  component: ErrorLoginComponent
   }
 ];
 

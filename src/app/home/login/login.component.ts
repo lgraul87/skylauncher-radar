@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Firestore } from '@angular/fire/firestore';
 import { collection, doc, getDocs, query, setDoc } from 'firebase/firestore';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,10 +14,11 @@ export class LoginComponent implements OnInit {
 
   login!: any;
   loginForm!: FormGroup;
-
+  isSubmited = false;
 
   constructor(
     private firestore: Firestore,
+    private router: Router
   ) { };
 
   ngOnInit(): void {
@@ -37,29 +39,28 @@ export class LoginComponent implements OnInit {
     });
   }
   async submitForm(form: FormGroup) {
+    this.isSubmited  = true;
     if (form.valid) {
       const login = {
         email: form.value.email,
         password: form.value.password,
       };
 
-      const di = doc(this.firestore, "account/");
+      const q = collection(this.firestore, "account") 
+      const sendSnapshot = await getDocs(q);
+      sendSnapshot.forEach((sendSnapshotdoc) => {
 
-      console.log(di);
-      
-
-
-      // setDoc(doc(this.firestore, "user/" + login.email), login);
-      // Esto ta mal arreglar 
+        if((sendSnapshotdoc.data()['email'] == login.email)&&(sendSnapshotdoc.data()['password'] == login.password)){
+          this.router.navigate(['radar'])
+        }else{
+          this.router.navigate(['error-login'])
+           
+        }
+      });
+      this.initRegisterForm();
 
     } else {
-      const q = query(collection(this.firestore,"account"))      
-
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
-      });
-      // alert('Por favor, introduzca datos para todos los campos... y con un minimo de 3 caracteres y un maximo de 30. Gracias.');
+      
     }
   }
 

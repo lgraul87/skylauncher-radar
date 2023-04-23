@@ -10,13 +10,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-account.component.scss']
 })
 export class CreateAccountComponent implements OnInit {
-
-
   register!: any;
   registerForm!: FormGroup;
+  isSubmited = false;
 
   constructor(
-    private router : Router,
+    private router: Router,
     private firestore: Firestore,
   ) { };
 
@@ -30,7 +29,6 @@ export class CreateAccountComponent implements OnInit {
       this.register = data;
     });
   }
-
   private initRegisterForm() {
     this.registerForm = new FormGroup({
       email: new FormControl('', [
@@ -45,29 +43,28 @@ export class CreateAccountComponent implements OnInit {
     });
   }
   async submitForm(form: FormGroup) {
+    this.isSubmited = true;
     if (form.valid) {
       const register = {
         email: form.value.email,
         password: form.value.password,
       };
-      const q = collection(this.firestore, "account") 
+      const q = collection(this.firestore, "account")
       const sendSnapshot = await getDocs(q);
       sendSnapshot.forEach((sendSnapshotdoc) => {
 
-        if(sendSnapshotdoc.data()['email'] == register.email){
+        if (sendSnapshotdoc.data()['email'] == register.email) {
           console.log('terrible');
           this.router.navigate(['error-register'])
-        }else{
-           setDoc(doc(this.firestore, "account/" + register.email), register);
-           this.router.navigate(['radar'])
+        } else {
+          setDoc(doc(this.firestore, "account/" + register.email), register);
+          this.router.navigate(['radar'])
         }
       });
       this.initRegisterForm();
 
     } else {
-      alert('Por favor, introduzca datos para todos los campos... y con un minimo de 3 caracteres y un maximo de 30. Gracias.');
+
     }
   }
-
-
 }
