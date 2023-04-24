@@ -14,9 +14,10 @@ import { getFirestore } from 'firebase/firestore';
 import { environment } from '../../environments/environment';
 import { ModifyProfileComponent } from './body/modify-profile/modify-profile.component';
 import { CreateProfileComponent } from './header/create-profile-modal/create-profile-modal.component';
+import { ErrorCreateProfileComponent } from './header/create-profile-modal/error-create-profile/error-create-profile.component';
 
 @NgModule({
-  declarations: [RadarComponent, HeaderComponent, BodyComponent, FooterComponent,CreateProfileComponent,  ModifyProfileComponent],
+  declarations: [RadarComponent, HeaderComponent, BodyComponent, FooterComponent,CreateProfileComponent,  ModifyProfileComponent, ErrorCreateProfileComponent],
   imports: [
     CommonModule,
     RadarRoutingModule,

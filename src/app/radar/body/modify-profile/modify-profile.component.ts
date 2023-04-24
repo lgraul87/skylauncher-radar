@@ -3,7 +3,6 @@ import { collectionData, Firestore } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { collection, doc, updateDoc } from 'firebase/firestore';
-import { LoginComponent } from 'src/app/home/login/login.component';
 
 @Component({
 	selector: 'app-modify-profile',
@@ -65,6 +64,8 @@ export class ModifyProfileComponent implements OnInit {
 
 	async updateForm(form: FormGroup) {
 
+		this.isSubmited=true;
+
 		if (form.valid) {
 			const updateProfile = {
 				currentProfile: form.value.currentProfile,
@@ -78,7 +79,7 @@ export class ModifyProfileComponent implements OnInit {
 				description: updateProfile.description
 			});
 		}else{
-			alert('Por favor, introduzca datos para todos los campos... y con un minimo de 3 caracteres y un maximo de 30. Gracias.')
+			
 		}
 	}
 }

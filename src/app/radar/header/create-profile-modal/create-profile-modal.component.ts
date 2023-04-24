@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { collectionData, Firestore } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { collection, doc, getDocs, query, setDoc, updateDoc, where } from 'firebase/firestore';
 
@@ -21,11 +22,13 @@ export class CreateProfileComponent implements OnInit {
 		return this.profileForm.get('description');
 	}
 	constructor(
+		private router: Router,
 		private firestore: Firestore,
 		config: NgbModalConfig,
 		private modalService: NgbModal) {
 		config.backdrop = 'static';
 		config.keyboard = false;
+		
 	}
 
 	ngOnInit(): void {
@@ -53,6 +56,8 @@ export class CreateProfileComponent implements OnInit {
 		});
 	}
 	async submitForm(form: FormGroup) {
+		this.isSubmited = true;
+
 		if (form.valid) {
 			const profile = {
 				currentProfile: form.value.currentProfile,
@@ -61,37 +66,20 @@ export class CreateProfileComponent implements OnInit {
 			};
 			this.profile = profile;
 
-			const di = doc(this.firestore, "user/");
-			
-			console.log(di);
-			
+			const q = collection(this.firestore, "user")
+			const sendSnapshot = await getDocs(q);
+			sendSnapshot.forEach((sendSnapshotdoc) => {
 
-			// const q = query(di, where(profile.profile, "==", profile.profile));
+				if ((sendSnapshotdoc.data()['profile'] == profile.profile)) {
+					
+					this.router.navigate(['radar/error-profile'])
 
-			// console.log(q);
-			
-
-			// const querySnapshot = await getDocs(q);
-
-			// querySnapshot.forEach((doc) => {
-			// 	console.log('El id es : '+ doc.id);
-			// 	console.log('El data es : '+doc.data());
-			// 	console.log('fin');
-				
-			//   });
-
-			//  if(q){
-			// 	setDoc(doc(this.firestore, "user/" + profile.profile), profile);
-			// 	alert('existe');
-
-			// 	this.initProfileForm();
-			//  }else{
-			//  	setDoc(doc(this.firestore, "user/" + profile.profile), profile);
-			// 	this.initProfileForm();			
-			//  }
-
-		} else {
-			alert('Por favor, introduzca datos para todos los campos... y con un minimo de 3 caracteres y un maximo de 30. Gracias.');
-		}
+				} else {
+					setDoc(doc(this.firestore, "user/" + profile.profile), profile);
+					this.router.navigate(['radar'])
+				}
+			});
+		}else {
+		};
 	}
 }

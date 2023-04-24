@@ -50,6 +50,8 @@ export class LoginComponent implements OnInit {
       const sendSnapshot = await getDocs(q);
       sendSnapshot.forEach((sendSnapshotdoc) => {
 
+        console.log(sendSnapshotdoc.data()['email'],sendSnapshotdoc.data()['password']);
+
         if((sendSnapshotdoc.data()['email'] == login.email)&&(sendSnapshotdoc.data()['password'] == login.password)){
           this.router.navigate(['radar'])
         }else{

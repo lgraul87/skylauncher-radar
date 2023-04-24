@@ -17,13 +17,15 @@
                 <div class="col-4">
 
                     <input formControlName="currentProfile" name="currentProfile" id="currentProfile" class="form-control input" required type="text"
-                        [class.border-danger]="updateProfileForm.get('currentProfile')?.errors?.['required']" />
+                        [class.border-danger]="(updateProfileForm.get('currentProfile')?.errors?.['required']
+                        || updateProfileForm.get('currentProfile')?.errors?.['maxlength'] || updateProfileForm.get('currentProfile')?.errors?.['minlength']
+                        )&& isSubmited" />
 
 
-                    <span *ngIf="updateProfileForm.get('currentProfile')?.errors?.['required']" class="text-danger">
+                    <span *ngIf="updateProfileForm.get('currentProfile')?.errors?.['required']&& isSubmited" class="text-danger">
                         * Campo obligatorio.
                     </span>
-                    <span *ngIf="this.updateProfileForm.get('currentProfile')?.errors?.['minlength']"
+                    <span *ngIf="this.updateProfileForm.get('currentProfile')?.errors?.['minlength']&& isSubmited"
                         class="text-danger">
                         (Debe tener como mínimo 3 caracteres)
                     </span>
@@ -33,11 +35,12 @@
                 <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Description</label>
                 <div class="col-xs-4 col-sm-auto w-100">
                     <textarea formControlName="description" class="form-control"
-                        [class.border-danger]="updateProfileForm.get('description')?.errors?.['required']"></textarea>
-                    <span *ngIf="updateProfileForm.get('description')?.errors?.['required']" class="text-danger">
+                        [class.border-danger]="(updateProfileForm.get('description')?.errors?.['required']
+                        || updateProfileForm.get('description')?.errors?.['maxlength'] || updateProfileForm.get('description')?.errors?.['minlength'])&& isSubmited"></textarea>
+                    <span *ngIf="updateProfileForm.get('description')?.errors?.['required']&& isSubmited" class="text-danger">
                         * Campo obligatorio.
                     </span>
-                    <span *ngIf="this.updateProfileForm.get('description')?.errors?.['minlength']" class="text-danger">
+                    <span *ngIf="this.updateProfileForm.get('description')?.errors?.['minlength']&& isSubmited" class="text-danger">
                         (Debe tener como mínimo 3 caracteres)
                     </span>
                 </div>

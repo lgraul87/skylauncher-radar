@@ -55,7 +55,7 @@ export class CreateAccountComponent implements OnInit {
 
         if (sendSnapshotdoc.data()['email'] == register.email) {
           console.log('terrible');
-          this.router.navigate(['error-register'])
+          this.router.navigate(['create-account/error-register'])
         } else {
           setDoc(doc(this.firestore, "account/" + register.email), register);
           this.router.navigate(['radar'])
