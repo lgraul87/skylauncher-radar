@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { collectionData, Firestore } from '@angular/fire/firestore';
+import { Component, OnInit } from '@angular/core';
+import { Firestore } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { collection, doc, getDocs, query, setDoc, updateDoc, where } from 'firebase/firestore';
+import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
 
 @Component({
 	selector: 'app-create-profile',
@@ -68,7 +68,6 @@ export class CreateProfileComponent implements OnInit {
 
 			const coleccion = query(collection(this.firestore, 'user'), where('profile', '==', profile.profile))
 			const documentos = await getDocs(coleccion);
-			console.log(documentos.docs.length);
 			if (documentos.docs.length == 1) {
 				this.router.navigate(['radar/error-profile'])
 			} else {
@@ -76,7 +75,6 @@ export class CreateProfileComponent implements OnInit {
 				this.router.navigate(['radar']);
 				this.initProfileForm();
 			}
-		} else {
-		};
+		}
 	}
 }

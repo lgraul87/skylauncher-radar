@@ -64,22 +64,20 @@ export class ModifyProfileComponent implements OnInit {
 
 	async updateForm(form: FormGroup) {
 
-		this.isSubmited=true;
+		this.isSubmited = true;
 
 		if (form.valid) {
 			const updateProfile = {
 				currentProfile: form.value.currentProfile,
 				description: form.value.description
 			}
-
 			const updateForm = doc(this.firestore, "user/" + this.profileToEdit.profile);
-			
 			await updateDoc(updateForm, {
 				currentProfile: updateProfile.currentProfile,
 				description: updateProfile.description
 			});
-		}else{
-			
+		} else {
+
 		}
 	}
 }

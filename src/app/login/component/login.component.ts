@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Firestore } from '@angular/fire/firestore';
-import { DocumentData, QueryDocumentSnapshot, collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import { Router } from '@angular/router';
-import { filter } from 'rxjs';
-
 
 @Component({
   selector: 'app-login',
@@ -48,13 +46,12 @@ export class LoginComponent implements OnInit {
       };
       const coleccion = query(collection(this.firestore, 'account'), where('email', '==', login.email), where('password', '==', login.password))
       const documentos = await getDocs(coleccion);
-      console.log(documentos.docs.length);
+      
       if(documentos.docs.length == 1){
-            this.router.navigate(['radar']);
-            this.initRegisterForm();       
+            this.router.navigate(['radar']);     
       }else{
         this.router.navigate(['error-login']);
-        this.initRegisterForm();
+       
       }
     } else {
       this.initRegisterForm();

@@ -13,11 +13,11 @@ import { provideFirestore } from '@angular/fire/firestore';
 import { getFirestore } from 'firebase/firestore';
 import { environment } from '../../environments/environment';
 import { ModifyProfileComponent } from './body/modify-profile/modify-profile.component';
-import { CreateProfileComponent } from './header/create-profile-modal/create-profile-modal.component';
-import { ErrorCreateProfileComponent } from './header/create-profile-modal/error-create-profile/error-create-profile.component';
+import { CreateProfileComponent } from './create-profile-modal/component/create-profile-modal.component';
+
 
 @NgModule({
-  declarations: [RadarComponent, HeaderComponent, BodyComponent, FooterComponent,CreateProfileComponent,  ModifyProfileComponent, ErrorCreateProfileComponent],
+  declarations: [RadarComponent, HeaderComponent, BodyComponent, FooterComponent,CreateProfileComponent,  ModifyProfileComponent],
   imports: [
     CommonModule,
     RadarRoutingModule,
