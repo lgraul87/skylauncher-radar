@@ -49,19 +49,20 @@ export class CreateAccountComponent implements OnInit {
         email: form.value.email,
         password: form.value.password,
       };
-      const q = collection(this.firestore, "account")
-      const sendSnapshot = await getDocs(q);
-      sendSnapshot.forEach((sendSnapshotdoc) => {
 
-        if (sendSnapshotdoc.data()['email'] == register.email) {
-          console.log('terrible');
-          this.router.navigate(['create-account/error-register'])
-        } else {
-          setDoc(doc(this.firestore, "account/" + register.email), register);
-          this.router.navigate(['radar'])
-        }
-      });
-      this.initRegisterForm();
+
+
+      const coleccion = query(collection(this.firestore, 'account'), where('email', '==', register.email))
+      const documentos = await getDocs(coleccion);
+      console.log(documentos.docs.length);
+
+      if (documentos.docs.length == 0) {
+        setDoc(doc(this.firestore, "account/" + register.email), register);
+        this.router.navigate(['radar']);
+      } else {
+        this.router.navigate(['create-account/error-register'])
+        this.initRegisterForm();
+      }
 
     } else {
 

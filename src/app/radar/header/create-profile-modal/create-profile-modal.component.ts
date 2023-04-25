@@ -28,7 +28,7 @@ export class CreateProfileComponent implements OnInit {
 		private modalService: NgbModal) {
 		config.backdrop = 'static';
 		config.keyboard = false;
-		
+
 	}
 
 	ngOnInit(): void {
@@ -66,20 +66,17 @@ export class CreateProfileComponent implements OnInit {
 			};
 			this.profile = profile;
 
-			const q = collection(this.firestore, "user")
-			const sendSnapshot = await getDocs(q);
-			sendSnapshot.forEach((sendSnapshotdoc) => {
-
-				if ((sendSnapshotdoc.data()['profile'] == profile.profile)) {
-					
-					this.router.navigate(['radar/error-profile'])
-
-				} else {
-					setDoc(doc(this.firestore, "user/" + profile.profile), profile);
-					this.router.navigate(['radar'])
-				}
-			});
-		}else {
+			const coleccion = query(collection(this.firestore, 'user'), where('profile', '==', profile.profile))
+			const documentos = await getDocs(coleccion);
+			console.log(documentos.docs.length);
+			if (documentos.docs.length == 1) {
+				this.router.navigate(['radar/error-profile'])
+			} else {
+				setDoc(doc(this.firestore, "user/" + profile.profile), profile);
+				this.router.navigate(['radar']);
+				this.initProfileForm();
+			}
+		} else {
 		};
 	}
 }

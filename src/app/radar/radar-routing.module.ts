@@ -10,8 +10,8 @@ const routes: Routes = [
   },
   {
     path: 'radar/error-profile',
-    component: ErrorCreateProfileComponent 
-  }
+    component: ErrorCreateProfileComponent
+  },
 
 ]
 

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Firestore } from '@angular/fire/firestore';
-import { collection, doc, getDocs, query, setDoc } from 'firebase/firestore';
+import { DocumentData, QueryDocumentSnapshot, collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
 import { Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 
 @Component({
@@ -39,31 +40,24 @@ export class LoginComponent implements OnInit {
     });
   }
   async submitForm(form: FormGroup) {
-    this.isSubmited  = true;
+    this.isSubmited = true;
     if (form.valid) {
       const login = {
         email: form.value.email,
         password: form.value.password,
       };
-
-      const q = collection(this.firestore, "account") 
-      const sendSnapshot = await getDocs(q);
-      sendSnapshot.forEach((sendSnapshotdoc) => {
-
-        console.log(sendSnapshotdoc.data()['email'],sendSnapshotdoc.data()['password']);
-
-        if((sendSnapshotdoc.data()['email'] == login.email)&&(sendSnapshotdoc.data()['password'] == login.password)){
-          this.router.navigate(['radar'])
-        }else{
-          this.router.navigate(['error-login'])
-           
-        }
-      });
-      this.initRegisterForm();
-
+      const coleccion = query(collection(this.firestore, 'account'), where('email', '==', login.email), where('password', '==', login.password))
+      const documentos = await getDocs(coleccion);
+      console.log(documentos.docs.length);
+      if(documentos.docs.length == 1){
+            this.router.navigate(['radar']);
+            this.initRegisterForm();       
+      }else{
+        this.router.navigate(['error-login']);
+        this.initRegisterForm();
+      }
     } else {
-      
+      this.initRegisterForm();
     }
   }
-
 }
