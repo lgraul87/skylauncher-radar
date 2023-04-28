@@ -56,7 +56,7 @@ export class CreateAccountComponent implements OnInit {
       const documentos = await getDocs(coleccion);
       if (documentos.docs.length == 0) {
         setDoc(doc(this.firestore, "account/" + register.email), register);
-        this.router.navigate(['radar']);
+        this.router.navigate(['create-account-success']);
       } else {
         this.router.navigate(['error-create-account']) 
       }

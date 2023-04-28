@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { AsyncPipe, CommonModule, DecimalPipe, NgFor } from '@angular/common';
 import { RadarRoutingModule } from './radar-routing.module';
 import { HeaderComponent } from './header/header.component';
-import { BodyComponent } from './body/body.component';
+import { BodyComponent } from './body/component/body.component';
 import { FooterComponent } from './footer/footer.component';
 import { RadarComponent } from './component/radar.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -14,10 +14,12 @@ import { getFirestore } from 'firebase/firestore';
 import { environment } from '../../environments/environment';
 import { ModifyProfileComponent } from './body/modify-profile/modify-profile.component';
 import { CreateProfileComponent } from './create-profile-modal/component/create-profile-modal.component';
+import { ErrorCreateProfileComponent } from './create-profile-modal/error-create-profile/error-create-profile.component';
+import { LogOutComponent } from './log-out/log-out.component';
 
 
 @NgModule({
-  declarations: [RadarComponent, HeaderComponent, BodyComponent, FooterComponent,CreateProfileComponent,  ModifyProfileComponent],
+  declarations: [RadarComponent, HeaderComponent, BodyComponent, FooterComponent,CreateProfileComponent,  ModifyProfileComponent,ErrorCreateProfileComponent, LogOutComponent],
   imports: [
     CommonModule,
     RadarRoutingModule,
