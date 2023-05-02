@@ -16,6 +16,7 @@ export class LogOutComponent implements OnInit {
   }
 
   navigateToLogin() {
+    sessionStorage.setItem('userLogged','');
     this.router.navigate([''])
   }
 

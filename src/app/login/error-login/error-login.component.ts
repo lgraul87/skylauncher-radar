@@ -17,7 +17,7 @@ export class ErrorLoginComponent implements OnInit {
   }
 
   navigateToLogin() {
+    sessionStorage.setItem('userLogged','');
     this.router.navigate([''])
-
   }
 }

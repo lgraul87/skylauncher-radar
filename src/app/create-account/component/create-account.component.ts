@@ -50,15 +50,15 @@ export class CreateAccountComponent implements OnInit {
         password: form.value.password,
       };
 
-
-
       const coleccion = query(collection(this.firestore, 'account'), where('email', '==', register.email))
       const documentos = await getDocs(coleccion);
       if (documentos.docs.length == 0) {
+        sessionStorage.setItem('userLogged', register.email);
         setDoc(doc(this.firestore, "account/" + register.email), register);
         this.router.navigate(['create-account-success']);
       } else {
-        this.router.navigate(['error-create-account',{email:register.email}]) 
+        sessionStorage.setItem('email',register.email)
+        this.router.navigate(['error-create-account']) 
       }
     } else{
     }

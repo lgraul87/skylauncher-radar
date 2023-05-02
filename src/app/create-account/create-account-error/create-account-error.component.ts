@@ -8,28 +8,21 @@ import { Router } from '@angular/router';
 })
 export class CreateAccountErrorComponent implements OnInit {
 
-  gmail!: '';
-
-
-  @Input()
-  email:any;
+  email= sessionStorage.getItem('email');
 
   constructor(
     private router: Router
   ) { }
   ngOnInit(): void {
-    this.imprime
-  }
-  imprime(){
-    this.gmail = this.email;
-
-    console.log(this.gmail);
-    
-    return this.gmail
   }
   
   navigateToCreateAccount() {
+
+    sessionStorage.setItem('email','');
+    sessionStorage.setItem('userLogged','');
+    this.email = '';
     this.router.navigate(['create-account'])
+
   }
 
 }
