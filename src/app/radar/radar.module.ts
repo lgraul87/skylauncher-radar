@@ -15,15 +15,17 @@ import { environment } from '../../environments/environment';
 import { ModifyProfileComponent } from './body/modify-profile/modify-profile.component';
 import { CreateProfileComponent } from './create-profile-modal/component/create-profile-modal.component';
 import { ErrorCreateProfileComponent } from './create-profile-modal/error-create-profile/error-create-profile.component';
-import { LogOutComponent } from './log-out/log-out.component';
+import { LogOutModule } from '../log-out/log-out.module';
 
 
 @NgModule({
-  declarations: [RadarComponent, HeaderComponent, BodyComponent, FooterComponent,CreateProfileComponent,  ModifyProfileComponent,ErrorCreateProfileComponent, LogOutComponent],
+  declarations: [RadarComponent, HeaderComponent, BodyComponent, FooterComponent,CreateProfileComponent,
+    ModifyProfileComponent,ErrorCreateProfileComponent],
   imports: [
     CommonModule,
     RadarRoutingModule,
     NgbModule,
+    LogOutModule,
     DecimalPipe,
     NgFor,
     AsyncPipe,

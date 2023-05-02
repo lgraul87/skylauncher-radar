@@ -58,7 +58,7 @@ export class CreateAccountComponent implements OnInit {
         setDoc(doc(this.firestore, "account/" + register.email), register);
         this.router.navigate(['create-account-success']);
       } else {
-        this.router.navigate(['error-create-account']) 
+        this.router.navigate(['error-create-account',{email:register.email}]) 
       }
     } else{
     }

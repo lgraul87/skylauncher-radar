@@ -1,6 +1,10 @@
 <div class="row">
     <div class="col mt-5 tabla">
         <div class="container text-center ">
+            <div class="d-flex mb-5 justify-content-end">
+                <app-create-profile></app-create-profile>
+                <app-log-out></app-log-out>
+            </div>
             <table class="w-100 table table-striped">
                 <thead>
                     <tr>
@@ -8,15 +12,15 @@
                         <th scope="col">Nombre por el que se le conoce</th>
                         <th scope="col">Nombre actual</th>
                         <th scope="col">Descripcion</th>
-                        <th scope="col"></th>
+                        <th  scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let user of profiles , index as i">
-                        <th scope="row">{{ i + 1 }}</th>
-                        <td><ngb-highlight [result]="user.profile"></ngb-highlight></td>
-                        <td><ngb-highlight [result]="user.currentProfile"></ngb-highlight></td>
-                        <td><ngb-highlight [result]="user.description"></ngb-highlight></td>
+                        <th class="align-middle" scope="row">{{ i + 1 }}</th>
+                        <td class="align-middle"><ngb-highlight [result]="user.profile"></ngb-highlight></td>
+                        <td class="align-middle"><ngb-highlight [result]="user.currentProfile"></ngb-highlight></td>
+                        <td class="align-middle"><ngb-highlight [result]="user.description"></ngb-highlight></td>
                         <td>
                             <div>
                                 <button type="button" class="btn btn-light m-3 " (click)="deleteProfile(user.profile)">
