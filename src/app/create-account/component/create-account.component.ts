@@ -31,6 +31,7 @@ export class CreateAccountComponent implements OnInit {
   }
   private initRegisterForm() {
     this.registerForm = new FormGroup({
+
       email: new FormControl('', [
         Validators.required,
         Validators.email,
@@ -43,7 +44,9 @@ export class CreateAccountComponent implements OnInit {
     });
   }
   async submitForm(form: FormGroup) {
+
     this.isSubmited = true;
+
     if (form.valid) {
       const register = {
         email: form.value.email,
@@ -52,6 +55,7 @@ export class CreateAccountComponent implements OnInit {
 
       const coleccion = query(collection(this.firestore, 'account'), where('email', '==', register.email))
       const documentos = await getDocs(coleccion);
+      
       if (documentos.docs.length == 0) {
         sessionStorage.setItem('userLogged', register.email);
         setDoc(doc(this.firestore, "account/" + register.email), register);

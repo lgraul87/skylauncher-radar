@@ -10,14 +10,12 @@
         <form [formGroup]="registerForm" (ngSubmit)="submitForm(registerForm)"
           class="ng-untouched container-fluid ng-pristine ng-invalid">
           
-            <div class="col mt-5">
+            <div class="col mt-5 tamaño">
               <input formControlName="email" type="email" placeholder="E-mail..."
                 class="p-3 form-control  ng-untouched ng-pristine ng-invalid"
                 [ngClass]="{'border-danger' :(registerForm.get('email')?.errors?.['required']&&registerForm.get('email')?.dirty || registerForm.get('email')?.errors?.['email'])&& isSubmited}" />
 
-              <span
-                *ngIf="registerForm.get('email')?.errors?.['required']&&registerForm.get('email')?.dirty && isSubmited"
-                class="text-danger">
+              <span [ngClass]="registerForm.get('re')?.errors?.['required']&&registerForm.get('email')?.dirty && isSubmited ? 'text-danger' : 'invisible'">
                 * Obligatory field.
               </span>
               <span *ngIf="registerForm.get('email')?.errors?.['email']&&registerForm.get('email')?.dirty && isSubmited"
@@ -25,7 +23,7 @@
                 * Invalid email format.
               </span>
             </div>
-            <div class="col">
+            <div class="col tamaño">
               <p class="mt-3 mb-0">
               </p>
               <input formControlName="password" type="password" placeholder="Password..."

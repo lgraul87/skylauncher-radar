@@ -13,7 +13,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class BodyComponent implements OnInit {
 	
-	profiles!: any;
+	profiles :any = [];
 	profileForm!: FormGroup;
 	deleteProfileForm!: FormGroup;
 

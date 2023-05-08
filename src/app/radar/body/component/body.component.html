@@ -1,37 +1,44 @@
 <div class="row">
     <div class="col mt-5 tabla">
         <div class="container text-center ">
-            <div class="d-flex mb-5 justify-content-end">
+            <div class="d-flex mb-3 justify-content-end">
                 <app-create-profile></app-create-profile>
                 <app-log-out></app-log-out>
             </div>
-            <table class="w-100 table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nombre por el que se le conoce</th>
-                        <th scope="col">Nombre actual</th>
-                        <th scope="col">Descripcion</th>
-                        <th  scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let user of profiles , index as i">
-                        <th class="align-middle" scope="row">{{ i + 1 }}</th>
-                        <td class="align-middle"><ngb-highlight [result]="user.profile"></ngb-highlight></td>
-                        <td class="align-middle"><ngb-highlight [result]="user.currentProfile"></ngb-highlight></td>
-                        <td class="align-middle"><ngb-highlight [result]="user.description"></ngb-highlight></td>
-                        <td>
-                            <div>
-                                <button type="button" class="btn btn-light m-3 " (click)="deleteProfile(user.profile)">
-                                    Delete
-                                </button>
-                                <app-modify-profile [profileToEdit]="user"></app-modify-profile>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div *ngIf="profiles.length>0">
+                <table class="w-100 table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre por el que se le conoce</th>
+                            <th scope="col">Nombre actual</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of profiles , index as i">
+                            <th class="align-middle" scope="row">{{ i + 1 }}</th>
+                            <td class="align-middle"><ngb-highlight [result]="user.profile"></ngb-highlight></td>
+                            <td class="align-middle"><ngb-highlight [result]="user.currentProfile"></ngb-highlight></td>
+                            <td class="align-middle"><ngb-highlight [result]="user.description"></ngb-highlight></td>
+                            <td>
+                                <div class="text-end">
+                                    <app-modify-profile [profileToEdit]="user"></app-modify-profile>
+                                    <button type="button" class="btn button-class m-3 "
+                                        (click)="deleteProfile(user.profile)">
+                                        <img class="image-class" src="./../../../../assets/delete.jpg" alt="plus-icon">
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="profiles.length==0">
+
+                <h2 class="mt-5">NO DATA</h2>
+            </div>
         </div>
     </div>
 </div>

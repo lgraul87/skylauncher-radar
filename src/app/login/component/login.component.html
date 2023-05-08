@@ -29,19 +29,19 @@
             class="p-3 form-control ng-untouched ng-pristine ng-invalid" 
             [ngClass]="{'border-danger' :loginForm.get('password')?.errors?.['required']&&loginForm.get('password')?.dirty 
             || loginForm.get('password')?.errors?.['maxlength'] 
-            || loginForm.get('password')?.errors?.['minlength']}" />
+            || loginForm.get('password')?.errors?.['minlength']&& isSubmited}" />
 
-          <span *ngIf="loginForm.get('password')?.errors?.['required']&&loginForm.get('password')?.dirty"
+          <span *ngIf="loginForm.get('password')?.errors?.['required']&&loginForm.get('password')?.dirty && isSubmited"
             class="text-danger">
             * Obligatory field.
           </span>
 
-          <span *ngIf="loginForm.get('password')?.errors?.['minlength']&&loginForm.get('password')?.dirty"
+          <span *ngIf="loginForm.get('password')?.errors?.['minlength']&&loginForm.get('password')?.dirty && isSubmited"
             class="text-danger">
             * The password must have more than 7 characters.
           </span>
 
-          <span *ngIf="loginForm.get('password')?.errors?.['maxlength']&&loginForm.get('password')?.dirty"
+          <span *ngIf="loginForm.get('password')?.errors?.['maxlength']&&loginForm.get('password')?.dirty && isSubmited"
             class="text-danger">
             * The password must have less than 20 characters.
           </span>
